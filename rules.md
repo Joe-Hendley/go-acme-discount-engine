@@ -59,3 +59,4 @@ All items are identified by their name only. They are currently not grouped toge
 * Because the Item class is shared from the EPOS system, it cannot be altered.
 * Sadly, because it was designed by Big Consultancy Group Ltd, they have used Doubles instead of BigDecimals.
 * The Acme CEO has heard amazing things about Functional Programming, and the discount engine should produce no side-effects.
+* The ACME Discount Engine is currently in use, so the behaviour of the system must not change.
