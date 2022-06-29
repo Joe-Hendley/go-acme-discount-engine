@@ -20,12 +20,10 @@ type DiscountEngine struct {
 }
 
 func NewDiscountEngine() DiscountEngine {
-	twoForOne := "Freddo"
-
 	return DiscountEngine{
 		Time:               time.Now(),
-		twoForOne:          twoForOne,
-		twoForOneSlice:     []string{twoForOne},
+		twoForOne:          "Freddo",
+		twoForOneSlice:     []string{"Freddo"},
 		noBBEDiscountSlice: []string{"T-Shirt", "Keyboard", "Drill", "Chair"},
 	}
 }
@@ -43,7 +41,7 @@ func (d *DiscountEngine) ApplyDiscounts(items []models.Item) float64 {
 		} else {
 			itemCount += 1
 			if itemCount == 3 && utils.SliceContainsString(d.twoForOneSlice, currentItem) {
-				items[idx].Price = 0
+				items[idx].Price = 0.0
 				itemCount = 0
 			}
 		}
