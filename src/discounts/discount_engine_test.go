@@ -154,7 +154,6 @@ func TestUseByDiscountMeatNotTwentyFivePercent(t *testing.T) {
 }
 
 func TestComplexBasketWithLoyalty(t *testing.T) {
-	t.Skip()
 	items := []models.Item{}
 	items = append(items, models.NewItem("Steak (Meat)", 10.00, true, time.Now()))
 	items = append(items, models.NewItem("Thing", 10.00, true, time.Now()))
@@ -179,14 +178,13 @@ func TestComplexBasketWithLoyalty(t *testing.T) {
 	discountEngine.LoyaltyCard = true
 	result := discountEngine.ApplyDiscounts(items)
 
-	utils.AssertFloatEquals(t, result, 91.09)
+	utils.AssertFloatEquals(t, result, 90.60)
 }
 
 func TestComplexBasketWithoutLoyalty(t *testing.T) {
-	t.Skip()
 	items := []models.Item{}
-	items = append(items, models.NewItem("Steak (Meat)", 10.00, true, utils.RoundToDay(time.Now())))
-	items = append(items, models.NewItem("Thing", 10.00, true, utils.RoundToDay(time.Now())))
+	items = append(items, models.NewItem("Steak (Meat)", 10.00, true, time.Now()))
+	items = append(items, models.NewItem("Thing", 10.00, true, time.Now()))
 	items = append(items, models.NewItem("T-Shirt", 10.00, false, time.Now().Add(10*24*time.Hour)))
 	items = append(items, models.NewItem("Thing4", 10.00, false, time.Now().Add(-1*24*time.Hour)))
 	items = append(items, models.NewItem("Freddo", 5.00, false, time.Date(2200, time.May, 1, 0, 0, 0, 0, time.Local)))
@@ -208,5 +206,5 @@ func TestComplexBasketWithoutLoyalty(t *testing.T) {
 	discountEngine.LoyaltyCard = false
 	result := discountEngine.ApplyDiscounts(items)
 
-	utils.AssertFloatEquals(t, result, 92.95)
+	utils.AssertFloatEquals(t, result, 92.45)
 }
