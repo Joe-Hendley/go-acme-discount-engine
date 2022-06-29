@@ -1,6 +1,9 @@
 package models
 
-import "time"
+import (
+	"time"
+	"unicode/utf8"
+)
 
 type Item struct {
 	Name         string
@@ -18,3 +21,12 @@ func NewItem(name string, price float64, isPerishable bool, localDate time.Time)
 	}
 }
 
+type NameSortedItems []Item
+
+func (a NameSortedItems) Len() int      { return len(a) }
+func (a NameSortedItems) Swap(i, j int) { a[i], a[j] = a[j], a[i] }
+func (a NameSortedItems) Less(i, j int) bool {
+	iRune, _ := utf8.DecodeRuneInString(a[i].Name)
+	jRune, _ := utf8.DecodeRuneInString(a[j].Name)
+	return int32(iRune) < int32(jRune)
+}
