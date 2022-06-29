@@ -1,7 +1,6 @@
 package discounts
 
 import (
-	"fmt"
 	"math"
 	"sort"
 	"strings"
@@ -71,7 +70,6 @@ func (d *DiscountEngine) ApplyDiscounts(items []models.Item) float64 {
 		} else {
 			if daysUntilDate == 0 {
 				now := d.Time
-				fmt.Println(now.Hour())
 				if now.Hour() >= 0 && now.Hour() < 12 {
 					items[idx].Price = items[idx].Price - (items[idx].Price * (5.0 / 100.0))
 				} else {
